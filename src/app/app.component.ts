@@ -5,12 +5,12 @@ import { Vehicle } from './vehicle/vehicle';
 import { VehicleComponent } from './vehicle/vehicle.component';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { CallbackPipe } from './callback.pipe';
+import { FilterVehiclesPipe } from './filter-vehicles.pipe';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, VehicleContainerComponent, VehicleComponent, CommonModule, ReactiveFormsModule],
+  imports: [RouterOutlet, VehicleContainerComponent, VehicleComponent, CommonModule, ReactiveFormsModule, FilterVehiclesPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -38,8 +38,8 @@ export class AppComponent {
 
   constructor(private formBuilderFilter: FormBuilder, private formBuilderFinanciamiento: FormBuilder) {
     this.formFilter = formBuilderFilter.group({
-      brand: '',
-      year: -1
+      brand:<string> '',
+      year: ""
     })
     this.formFinaciamiento = formBuilderFinanciamiento.group({
       name: "",
@@ -74,6 +74,7 @@ export class AppComponent {
       }
       else {
         alert("Financiamiento exitoso")
+        this.selectedCar = -1
       }
     }
   }

@@ -1,6 +1,6 @@
-<form hidden="true" [formGroup]="formFilter">
+<form [formGroup]="formFilter">
   <label for="brand">
-    <input matInput name="brand" formControlName="brand" id="brand" type="text">
+    <input placeholder="Buscar marca" matInput name="brand" formControlName="brand" id="brand" type="text">
   </label>
 </form>
 
@@ -35,5 +35,5 @@
   </form>
 </div>
 <app-vehicle-container>
-  <app-vehicle  *ngFor="let vehicle of vehicleList; let i = index" (selectedCar)="selectCar($event)" [index]="i" [vehicle]="vehicle"></app-vehicle>
+  <app-vehicle  *ngFor="let vehicle of vehicleList | filterVehicles:formFilter.value.brand; let i = index" (selectedCar)="selectCar($event)" [index]="i" [vehicle]="vehicle"></app-vehicle>
 </app-vehicle-container>
