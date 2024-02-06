@@ -1,0 +1,18 @@
+.vehicleItem {
+    height: 100%;
+    border: solid red 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .vehicleItem__image {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+            width: 100%;
+            max-height: 100%s;
+            object-fit: cover;
+        }
+    }
+}
