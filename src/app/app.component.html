@@ -1,3 +1,39 @@
+<form hidden="true" [formGroup]="formFilter">
+  <label for="brand">
+    <input matInput name="brand" formControlName="brand" id="brand" type="text">
+  </label>
+</form>
+
+<div *ngIf="selectedCar >= 0" class="financiarModal">
+  <form class="financiarForm"  [formGroup]="formFinaciamiento" (ngSubmit)="submitFinanciamiento()">
+    <h1>Financiar {{vehicleList[selectedCar].brand}} {{vehicleList[selectedCar].model}} {{vehicleList[selectedCar].year}}</h1>
+        <label for="name">
+          Nombre:
+          <input required matInput name="name" formControlName="name" id="name" type="text">
+        </label>
+        <label for="email">
+          Correo:
+          <input required matInput name="email" formControlName="email" id="email" type="email">
+        </label>
+        <label for="CC">
+          Cédula:
+          <input required matInput name="CC" formControlName="CC" id="CC" type="text">
+        </label>
+        <label for="amount">
+          Monto requerido:
+          <input required matInput name="amount" formControlName="amount" id="amount" type="text">
+        </label>
+        <label for="months">
+          Plazo meses:
+          <input required matInput name="months" formControlName="months" id="months" type="text">
+        </label>
+        <label for="birth">
+          Fecha nacimiento:
+          <input required matInput name="birth" formControlName="birth" id="birth" type="date">
+        </label>
+        <button [disabled]="formFinaciamiento.invalid " type="submit">Submit</button>
+  </form>
+</div>
 <app-vehicle-container>
-  <app-vehicle *ngFor="let vehicle of vehicleList" [vehicle]="vehicle"></app-vehicle>
+  <app-vehicle  *ngFor="let vehicle of vehicleList; let i = index" (selectedCar)="selectCar($event)" [index]="i" [vehicle]="vehicle"></app-vehicle>
 </app-vehicle-container>

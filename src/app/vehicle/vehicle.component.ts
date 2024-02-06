@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Vehicle } from './vehicle';
 import { CommonModule } from '@angular/common';
 
@@ -11,4 +11,10 @@ import { CommonModule } from '@angular/common';
 })
 export class VehicleComponent {
   @Input() vehicle !: Vehicle;
+  @Input() index !: number;
+  @Output() selectedCar:EventEmitter<number> = new EventEmitter<number>()
+
+  selectCar (index: number) {
+    this.selectedCar.emit(index);
+  }
 }
